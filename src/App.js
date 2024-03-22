@@ -74,11 +74,13 @@ class App extends Component {
           </div>
         )}
 
-        <ul className="article-card-bg-container">
-          {newsList.map((eachNews) => (
-            <ArticleCard newsDetails={eachNews} />
-          ))}
-        </ul>
+        {!isLoading && (
+          <ul className="article-card-bg-container">
+            {newsList.map((eachNews) => (
+              <ArticleCard newsDetails={eachNews} />
+            ))}
+          </ul>
+        )}
       </div>
     );
   }
