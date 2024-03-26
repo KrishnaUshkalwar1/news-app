@@ -1,0 +1,23 @@
+.news-app-bg-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #cec2d1;
+}
+
+.article-card-bg-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.news-app-spinner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  width: 100vws;
+}
