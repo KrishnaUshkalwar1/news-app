@@ -16,6 +16,8 @@ class Navbar extends Component {
 
   onChangeSearchInput = (event) => {
     const { searchInput } = this.state;
+    const { setSearchInput } = this.props;
+    setSearchInput(event.target.value);
     this.setState({ searchInput: event.target.value });
   };
 
@@ -45,16 +47,17 @@ class Navbar extends Component {
           placeholder="Category"
           onChange={this.onChangeSelect}
         >
-          <option selected value="all">
-            All
+          <option selected value="general">
+            General
           </option>
+          <option value="world">World</option>
+          <option value="nation">Nation</option>
           <option value="business">Business</option>
-          <option value="entertainment">Entertainment</option>
-          <option value="general">General</option>
-          <option value="health">Health</option>
-          <option value="science">Science</option>
-          <option value="sports">Sports</option>
           <option value="technology">Technology</option>
+          <option value="entertainment">Entertainment</option>
+          <option value="sports">Sports</option>
+          <option value="science">Science</option>
+          <option value="health">Health</option>
         </select>
       </div>
     );

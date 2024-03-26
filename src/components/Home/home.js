@@ -6,18 +6,21 @@ import Navbar from "../Navbar/navbar";
 import ArticleCard from "../ArticleCard/article";
 
 class Home extends Component {
-  state = { newsList: [], isLoading: true, category: "all", searchInput: "" };
+  state = {
+    newsList: [],
+    isLoading: true,
+    category: "general",
+    searchInput: "",
+  };
+
+  setSearchInput = (input) => {
+    this.setState({ searchInput: input });
+  };
 
   getSearchBasedNews = async (search) => {
     const { category } = this.state;
 
-    let url;
-
-    if (category == "all") {
-      url = `https://newsapi.org/v2/top-headlines?q=${search}&apiKey=c20cc076652a4415ae202af91eb34696`;
-    } else {
-      url = `https://newsapi.org/v2/top-headlines?q=${search}&category=${category}&apiKey=c20cc076652a4415ae202af91eb34696`;
-    }
+    let url = `https://gnews.io/api/v4/top-headlines?category=${category}&q=${search}&apikey=b950a58677fb02c05181f1fa83135836`;
 
     this.setState({ searchInput: search });
     this.getNewsData(url);
@@ -26,14 +29,7 @@ class Home extends Component {
   getCategoryBasedNews = async (category) => {
     const { searchInput } = this.state;
 
-    let url;
-
-    if (category == "all" && searchInput == "") {
-      url =
-        "https://newsapi.org/v2/top-headlines?country=in&apiKey=c20cc076652a4415ae202af91eb34696";
-    } else {
-      url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&q=${searchInput}&apiKey=c20cc076652a4415ae202af91eb34696`;
-    }
+    let url = `https://gnews.io/api/v4/top-headlines?category=${category}&q=${searchInput}&apikey=b950a58677fb02c05181f1fa83135836`;
 
     this.getNewsData(url);
     this.setState({ category: category });
@@ -65,6 +61,7 @@ class Home extends Component {
         <Navbar
           getCategoryBasedNews={this.getCategoryBasedNews}
           getSearchBasedNews={this.getSearchBasedNews}
+          setSearchInput={this.setSearchInput}
         />
         {isLoading && (
           <div className="news-app-spinner">
